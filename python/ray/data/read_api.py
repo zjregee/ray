@@ -1562,18 +1562,19 @@ def read_csv(
 def read_semantic_service_data(
     host: str,
     port: int,
+    batch_size: int,
+    batch_num: int,
     *,
     parallelism: int = -1,
     ray_remote_args: Dict[str, Any] = None,
     concurrency: Optional[int] = None,
     override_num_blocks: Optional[int] = None,
 ) -> Dataset:
-    meta_provider = DefaultFileMetadataProvider()
-
     datasource = SemanticServiceDatasource(
         host,
         port,
-        meta_provider=meta_provider,
+        batch_size,
+        batch_num
     )
     return read_datasource(
         datasource,

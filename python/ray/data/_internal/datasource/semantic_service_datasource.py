@@ -10,12 +10,14 @@ if TYPE_CHECKING:
 class SemanticServiceDatasource(FileBasedDatasource):
     def __init__(
         self,
-        host: str = "localhost",
-        port: int = 8000,
+        host: str,
+        port: int,
+        batch_size: int,
+        batch_num: int,
         **file_based_datasource_kwargs,
     ):
-        super().__init__("../TOMBSTONE", **file_based_datasource_kwargs)
-        self.backend = SemanticService(host, port)
+        super().__init__("/workspace/hw/TOMBSTONE", **file_based_datasource_kwargs)
+        self.backend = SemanticService(host, port, batch_size, batch_num)
 
     def _read_stream(self, _f: "pyarrow.NativeFile", _path: str) -> Iterator[Block]:
         for table in self.backend.retrieve_data_all_mock():
