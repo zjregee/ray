@@ -7,3 +7,4 @@ python /workspace/python/ray/setup-dev.py -y
 cd /workspace/python
 pip install -r requirements.txt
 pip install tqdm
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu

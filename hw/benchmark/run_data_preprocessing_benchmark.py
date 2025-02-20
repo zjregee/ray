@@ -20,7 +20,7 @@ batch_nums = [100, 200, 300, 400, 500]
 for batch_num in batch_nums:
     start_time = time.perf_counter()
 
-    ds = (
+    dataset = (
         read_semantic_service_data("0.0.0.0", 8000, batch_size, batch_num)
         .map_batches(data_calaculate_task)
         .filter(data_filter_task)
