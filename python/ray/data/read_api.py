@@ -26,6 +26,7 @@ from ray.data._internal.datasource.bigquery_datasource import BigQueryDatasource
 from ray.data._internal.datasource.binary_datasource import BinaryDatasource
 from ray.data._internal.datasource.clickhouse_datasource import ClickHouseDatasource
 from ray.data._internal.datasource.csv_datasource import CSVDatasource
+from ray.data._internal.datasource.semantic_service_datasource import SemanticServiceDatasource
 from ray.data._internal.datasource.delta_sharing_datasource import (
     DeltaSharingDatasource,
 )
@@ -1557,6 +1558,31 @@ def read_csv(
         override_num_blocks=override_num_blocks,
     )
 
+@PublicAPI
+def read_semantic_service_data(
+    host: str,
+    port: int,
+    batch_size: int,
+    batch_num: int,
+    *,
+    parallelism: int = -1,
+    ray_remote_args: Dict[str, Any] = None,
+    concurrency: Optional[int] = None,
+    override_num_blocks: Optional[int] = None,
+) -> Dataset:
+    datasource = SemanticServiceDatasource(
+        host,
+        port,
+        batch_size,
+        batch_num
+    )
+    return read_datasource(
+        datasource,
+        parallelism=parallelism,
+        ray_remote_args=ray_remote_args,
+        concurrency=concurrency,
+        override_num_blocks=override_num_blocks,
+    )
 
 @PublicAPI
 def read_text(

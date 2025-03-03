@@ -1,0 +1,74 @@
+volumes:
+    local_data_volume:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: /Users/zjregee/Code/dev/ray
+
+networks:
+    local_network:
+        driver: bridge
+
+services:
+    ubuntu0:
+        image: mcr.microsoft.com/devcontainers/python:1-3.10-bookworm
+        mem_limit: 2g
+        cpus: 2.0
+        command: /bin/bash
+        tty: true
+        stdin_open: true
+        volumes:
+            - local_data_volume:/workspace
+        networks:
+            - local_network
+        ports:
+            - "6379:6379"
+
+    ubuntu1:
+        image: mcr.microsoft.com/devcontainers/python:1-3.10-bookworm
+        mem_limit: 2g
+        cpus: 2.0
+        command: /bin/bash
+        tty: true
+        stdin_open: true
+        volumes:
+            - local_data_volume:/workspace
+        networks:
+            - local_network
+
+    ubuntu2:
+        image: mcr.microsoft.com/devcontainers/python:1-3.10-bookworm
+        mem_limit: 2g
+        cpus: 2.0
+        command: /bin/bash
+        tty: true
+        stdin_open: true
+        volumes:
+            - local_data_volume:/workspace
+        networks:
+            - local_network
+
+    ubuntu3:
+        image: mcr.microsoft.com/devcontainers/python:1-3.10-bookworm
+        mem_limit: 2g
+        cpus: 2.0
+        command: /bin/bash
+        tty: true
+        stdin_open: true
+        volumes:
+            - local_data_volume:/workspace
+        networks:
+            - local_network
+
+    ubuntu4:
+        image: mcr.microsoft.com/devcontainers/python:1-3.10-bookworm
+        mem_limit: 2g
+        cpus: 2.0
+        command: /bin/bash
+        tty: true
+        stdin_open: true
+        volumes:
+            - local_data_volume:/workspace
+        networks:
+            - local_network
