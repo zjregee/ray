@@ -1,1 +1,1 @@
-[{"mentionNotify":false,"mentionType":0,"text":"xixixixi","token":"","type":"text"}]
+[{"mentionNotify":false,"mentionType":0,"text":"new xixi","token":"","type":"text"}]
